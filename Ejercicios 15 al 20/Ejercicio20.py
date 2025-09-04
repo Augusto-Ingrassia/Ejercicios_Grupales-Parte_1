@@ -23,35 +23,32 @@ class Fraccion:
     def __str__(self):
         return f"{self.numerador}/{self.denominador}"
 
-    # Sumar fracciones
-    @staticmethod
-    def sumarFracciones(f1, f2):
-        numerador = f1.numerador * f2.denominador + f2.numerador * f1.denominador
-        denominador = f1.denominador * f2.denominador
+    # Sumar fracciones (método de instancia)
+    def sumarFracciones(self, f2):
+        numerador = self.numerador * f2.denominador + f2.numerador * self.denominador
+        denominador = self.denominador * f2.denominador
         return Fraccion(numerador, denominador)
 
     # Restar fracciones
-    @staticmethod
-    def restarFracciones(f1, f2):
-        numerador = f1.numerador * f2.denominador - f2.numerador * f1.denominador
-        denominador = f1.denominador * f2.denominador
+    def restarFracciones(self, f2):
+        numerador = self.numerador * f2.denominador - f2.numerador * self.denominador
+        denominador = self.denominador * f2.denominador
         return Fraccion(numerador, denominador)
 
     # Multiplicar fracciones
-    @staticmethod
-    def multiplicarFracciones(f1, f2):
-        numerador = f1.numerador * f2.numerador
-        denominador = f1.denominador * f2.denominador
+    def multiplicarFracciones(self, f2):
+        numerador = self.numerador * f2.numerador
+        denominador = self.denominador * f2.denominador
         return Fraccion(numerador, denominador)
 
     # Dividir fracciones
-    @staticmethod
-    def dividirFracciones(f1, f2):
+    def dividirFracciones(self, f2):
         if f2.numerador == 0:
             raise ValueError("No se puede dividir por una fracción con numerador 0")
-        numerador = f1.numerador * f2.denominador
-        denominador = f1.denominador * f2.numerador
+        numerador = self.numerador * f2.denominador
+        denominador = self.denominador * f2.numerador
         return Fraccion(numerador, denominador)
+
 
 # ---------------- Clase principal ----------------
 class OperacionesFraccion:
@@ -67,19 +64,17 @@ class OperacionesFraccion:
         den2 = int(input("Denominador: "))
         f2 = Fraccion(num2, den2)
 
-        # Realizamos operaciones
-        suma = Fraccion.sumarFracciones(f1, f2)
-        resta = Fraccion.restarFracciones(f1, f2)
-        multiplicacion = Fraccion.multiplicarFracciones(f1, f2)
-        division = Fraccion.dividirFracciones(f1, f2)
+        suma = f1.sumarFracciones(f2)
+        resta = f1.restarFracciones(f2)
+        multiplicacion = f1.multiplicarFracciones(f2)
+        division = f1.dividirFracciones(f2)
 
-        # Mostramos resultados
         print("\nResultados:")
         print(f"Suma: {suma}")
         print(f"Resta: {resta}")
         print(f"Multiplicación: {multiplicacion}")
         print(f"División: {division}")
 
-# Ejecutamos main
+
 if __name__ == "__main__":
     OperacionesFraccion.main()
